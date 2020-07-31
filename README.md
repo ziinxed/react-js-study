@@ -15,4 +15,5 @@
 - [x] upcoming (movie)
 - [x] airing today (tv)
 - [x] tv Detail
-- [ ] movie detail
+- [x] movie detail
+- [x] search (movie, tv)
