@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 const Header = styled.header`
   color: white;
   position: fixed;
@@ -23,6 +23,10 @@ const Item = styled.li`
   width: 80px;
   height: 50px;
   text-align: center;
+  border-bottom: 5px solid
+    ${(props) =>
+      props.current ? "#3498db" : "transparent"};
+  transition: border-bottom 0.5s ease-in-out;
 `;
 
 const Slink = styled(Link)`
@@ -32,18 +36,21 @@ const Slink = styled(Link)`
   justify-content: center;
 `;
 
-export default () => (
+//gets props from withRouter
+//props are history location match
+//using props with spread - find the match in the props
+export default withRouter(({ location: { pathname } }) => (
   <Header>
     <List>
-      <Item>
+      <Item current={pathname === "/"}>
         <Slink to="/">Movies</Slink>
       </Item>
-      <Item>
-        <Slink to="/TV">TV</Slink>
+      <Item current={pathname === "/tv"}>
+        <Slink to="/tv">TV</Slink>
       </Item>
-      <Item>
-        <Slink to="/Search">Search</Slink>
+      <Item current={pathname === "/search"}>
+        <Slink to="/search">Search</Slink>
       </Item>
     </List>
   </Header>
-);
+));
